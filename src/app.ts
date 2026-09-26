@@ -4,7 +4,7 @@ import helmet from "helmet";
 
 import { env } from "./config/env.js";
 import waitlistRouter from "./modules/waitlist/waitlist.routes.js";
-import { waitlistRateLimiter } from "./middlewares/rate-limit.middleware.js";
+import verificationRouter from "./modules/verification/verification.routes.js";
 import { notFoundMiddleware } from "./middlewares/not-found.middleware.js";
 import { errorMiddleware } from "./middlewares/error.middleware.js";
 
@@ -30,7 +30,9 @@ app.get("/api/v1/health", (_req, res) => {
   });
 });
 
-app.use("/api/v1/waitlist", waitlistRateLimiter, waitlistRouter);
+app.use("/api/v1/waitlist", waitlistRouter);
+
+app.use("/api/v1/waitlist", verificationRouter);
 
 app.use(notFoundMiddleware);
 app.use(errorMiddleware);

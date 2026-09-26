@@ -3,3 +3,7 @@ export interface VerificationChallenge {
   tokenHash: string;
   expiresAt: Date;
 }
+
+export interface VerifyWaitlistInput {
+  token: string;
+}
