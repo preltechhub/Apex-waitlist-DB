@@ -161,8 +161,23 @@ const waitlistSchema = new Schema(
       verifiedAt: {
         type: Date,
       },
-    },
 
+      emailStatus: {
+        type: String,
+        enum: ["pending", "sent", "failed"],
+        required: true,
+        default: "pending",
+      },
+
+      emailSentAt: {
+        type: Date,
+      },
+
+      emailProviderMessageId: {
+        type: String,
+        select: false,
+      },
+    },
     source: {
       type: String,
       trim: true,
