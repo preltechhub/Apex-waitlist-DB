@@ -61,22 +61,17 @@ export async function sendEmail(
 }
 
 export async function sendVerificationEmail(
-  input: VerificationEmailTemplateInput & {
-    to: string;
-    idempotencyKey: string;
-  },
-): Promise<EmailDeliveryResult> {
-  const email = buildVerificationEmail({
-    firstName: input.firstName,
-    verificationUrl: input.verificationUrl,
-    expiresInMinutes: input.expiresInMinutes,
-  });
-
+  req: any,
+  res: any,
+  input: VerificationEmailTemplateInput,
+  email: string,
+  idempotencyKey: string,
+): Promise<any> {
+  const { html, subject, text } = res.body();
   return sendEmail({
     to: input.to,
     subject: email.subject,
     html: email.html,
     text: email.text,
-    idempotencyKey: input.idempotencyKey,
   });
 }
