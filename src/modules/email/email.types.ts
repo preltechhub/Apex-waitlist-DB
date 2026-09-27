@@ -12,6 +12,7 @@ export interface EmailDeliveryResult {
 
 export interface VerificationEmailTemplateInput {
   firstName: string;
+  email: string;
   verificationUrl: string;
   expiresInMinutes: number;
 }
